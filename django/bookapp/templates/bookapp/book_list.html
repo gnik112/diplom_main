@@ -1,0 +1,50 @@
+{% extends "bookapp/base.html" %}
+
+{% block content %}
+<h2>Список забронированых помещений:</h2>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for data in book_lists %}
+
+    <!-- Модальное окно с запросом удаления бронирования -->
+    <div class="modal fade" id="staticBackdrop{{data.booking.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+         tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Подтвердите удаление бронирования</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    Помещение: {{ data.roomname }}<br>
+                    Дата: {{ data.booking.date }}<br>
+                    Время: {{ data.time_beg }} - {{ data.time_end }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <a href="/book_delete/?id={{data.booking.id}}" class="btn btn-primary">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col" style="max-width: 25rem;">
+        <div class="card card-body border-primary">
+            <h4 class="card-header">Помещение: {{ data.roomname }}</h4>
+            <h5 class="card-title"></h5>
+            <h5 class="card-title">Дата: {{ data.booking.date }}</h5>
+            <p class="card-text">Время начала: {{ data.time_beg }}<br>
+                Время завершения: {{ data.time_end }}</p>
+            <h5 class="card-title">Состояние: {{ data.status }}</h5>
+            <div class="card-body">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop{{data.booking.id}}">
+                    Удалить
+                </button>
+                <a href="/book_edit/?id={{data.booking.id}}" class="btn btn-primary">Изменить</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Вход в систему</h2>
+<form method="post">
+    <div class="mb-3 row">
+        <label for="id_username" class="col-sm-2 col-form-label">Имя пользователя:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="username" autofocus autocapitalize="none"
+                   autocomplete="username" maxlength="150" required id="id_username">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="id_password" class="col-sm-2 col-form-label">Пароль:</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" name="password" autocomplete="current-password" required
+                   id="id_password">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Войти</button>
+</form>
+{% endblock %}

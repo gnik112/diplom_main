@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Регистрация пользователя</h2>
+<form method="post">
+
+    <div class="mb-3 row">
+        <label for="id_username" class="col-sm-2 col-form-label">Имя пользователя:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="username" autofocus autocapitalize="none"
+                   autocomplete="username" maxlength="150" required id="id_username">
+            <div class="form-text">Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_.
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="id_password2" class="col-sm-2 col-form-label">Пароль:</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" name="password2" autocomplete="current-password" required
+                   id="id_password2">
+        </div>
+        <div class="form-text">
+            <ul>
+                <li>Пароль не должен быть слишком похож на другую вашу личную информацию.</li>
+                <li>Ваш пароль должен содержать как минимум 8 символов.</li>
+                <li>Пароль не должен быть слишком простым и распространенным.</li>
+                <li>Пароль не может состоять только из цифр.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="id_password1" class="col-sm-2 col-form-label">Подтверждение пароля:</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" name="password1" autocomplete="current-password" required
+                   id="id_password1">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Зарегистрировать пользователя</button>
+</form>
+{% endblock %}

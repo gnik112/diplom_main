@@ -1,0 +1,33 @@
+{% extends "bookapp/base.html" %}
+
+{% block content %}
+<h2>Помещение: {{ fdata.caption }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3 row">
+        <label for="roomname" class="col-sm-2 col-form-label">Название:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="roomname" value="{{ fdata.roomname }}"
+                   autocomplete="username" maxlength="150" required id="roomname">
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="people_count" class="col-sm-2 col-form-label">Вместимость:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="people_count" value="{{ fdata.people_count }}"
+                   autocomplete="username" maxlength="10" required id="people_count">
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="cost" class="col-sm-2 col-form-label">Стоимость:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="cost" value="{{ fdata.cost }}"
+                   autocomplete="username" maxlength="10" required id="cost">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{fdata.key_title}}</button>
+</form>
+{% endblock %}

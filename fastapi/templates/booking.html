@@ -1,0 +1,43 @@
+{% extends "bookapp/base.html" %}
+
+{% block content %}
+<h2>Бронирование: {{ fdata.caption }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3 row">
+        <label for="room" class="col-sm-2 col-form-label">Комната:</label>
+        <select class="form-select" id="room" name="room">
+            {% for i in fdata.rooms %}
+            <option {{ i.select }} value="{{ i.room.id }}">{{ i.room.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="id_date" class="col-sm-2 col-form-label">Дата:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="date" placeholder="DD/MM/YYYY" value="{{ fdata.date }}"
+                   autocomplete="username" maxlength="150" required id="id_date">
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="input-group">
+            <span class="input-group-text">Время начала и завершения бронирования (Часы:Минуты)</span>
+            <input type="text" aria-label="Имя" class="form-control" name="timebeg" placeholder="HH:MM"
+                   value="{{ fdata.timebeg }}">
+            <input type="text" aria-label="Фамилия" class="form-control" name="timeend" placeholder="HH:MM"
+                   value="{{ fdata.timeend }}">
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="fconfirm" name="confirm" {{ fdata.confirm }}>
+            <label class="form-check-label" for="fconfirm">Подтверждено</label>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{fdata.key_title}}</button>
+</form>
+{% endblock %}
